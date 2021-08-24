@@ -15,7 +15,7 @@ latest_commit=$(curl -SsL https://api.github.com/repos/ethereum/go-ethereum/comm
 EXEC "latest_version='${latest_tag}-${latest_commit}'"
 
 INFO "docker build -t fullnode/bitcoin:${latest_version} --build-arg VERSION=${latest_version} ."
-docker build -t fullnode/bitcoin:${latest_version} --build-arg VERSION=${latest_version} .
+docker build -t fullnode/bitcoin:${latest_version} --build-arg VERSION=${latest_version} . || exit 1
 EXEC "docker tag fullnode/bitcoin:${latest_version} fullnode/bitcoin:latest"
 EXEC "docker push fullnode/bitcoin:${latest_version}"
 EXEC "docker push fullnode/bitcoin:latest"
