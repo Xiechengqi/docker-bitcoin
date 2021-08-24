@@ -11,9 +11,7 @@ RUN set -x \
     && downloadUrl="https://bitcoincore.org/bin/bitcoin-core-${VERSION}/bitcoin-${VERSION}-x86_64-linux-gnu.tar.gz" \
     && apt update -qq \
     && apt install -y -qq curl \
-    && curl -SsL $downloadUrl -o /tmp/bitcoin.tar.gz \
-    && tar zxf /tmp/bitcoin.tar.gz --strip-components 1 -C $INSTALLPATH \
-    && rm -f /tmp/bitcoin.tar.gz \
+    && curl -SsL $downloadUrl | tar zx --strip-components 1 -C $INSTALLPATH \
     && ln -fs $INSTALLPATH/bin/* /usr/bin/ \
     && bitcoin-cli -version \
 
