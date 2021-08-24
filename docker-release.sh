@@ -10,6 +10,7 @@ BASEURL="https://gitee.com/Xiechengqi/scripts/raw/master"
 source <(curl -SsL $BASEURL/tool/common.sh)
 
 latest_version=$(curl -SsL https://bitcoin.org/en/download | grep 'Latest version:' | awk '{print $NF}')
+curl -SsL https://registry.hub.docker.com/v1/repositories/fullnode/bitcoin/tags | grep ${latest_version} &> /dev/null && exit 0
 
 INFO "docker build -t fullnode/bitcoin:${latest_version} --build-arg VERSION=${latest_version} ."
 docker build -t fullnode/bitcoin:${latest_version} --build-arg VERSION=${latest_version} . || exit 1
