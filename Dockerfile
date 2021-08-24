@@ -12,7 +12,7 @@ RUN set -x \
     && apt update -qq \
     && apt install -y -qq curl \
     && curl -SsL $downloadUrl -o /tmp/bitcoin.tar.gz \
-    && tar zxf --strip-components /tmp/bitcoin.tar.gz 1 -C $INSTALLPATH \
+    && tar zxf /tmp/bitcoin.tar.gz --strip-components 1 -C $INSTALLPATH \
     && rm -f /tmp/bitcoin.tar.gz \
     && ln -fs $INSTALLPATH/bin/* /usr/bin/ \
     && bitcoin-cli -version \
