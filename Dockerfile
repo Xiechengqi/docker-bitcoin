@@ -7,6 +7,7 @@ ENV INSTALLPATH /bitcoin
 WORKDIR /bitcoin
 
 RUN set -x \
+    && echo ${VERSION} > $INSTALLPATH/version
     && downloadUrl="https://bitcoincore.org/bin/bitcoin-core-${VERSION}/bitcoin-${VERSION}-x86_64-linux-gnu.tar.gz" \
     && apt update -qq \
     && apt install -y -qq curl \
