@@ -8,6 +8,7 @@
 source /etc/profile
 BASEURL="https://gitee.com/Xiechengqi/scripts/raw/master"
 source <(curl -SsL $BASEURL/tool/common.sh)
+cd $(dirname $(readlink -f ${BASH_SOURCE[0]}))
 
 latest_version=$(curl -SsL https://bitcoin.org/en/download | grep 'Latest version:' | awk '{print $NF}')
 # curl -SsL https://registry.hub.docker.com/v1/repositories/fullnode/bitcoin/tags | grep ${latest_version} &> /dev/null && exit 0
