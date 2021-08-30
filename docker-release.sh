@@ -11,7 +11,7 @@ source <(curl -SsL $BASEURL/tool/common.sh)
 cd $(dirname $(readlink -f ${BASH_SOURCE[0]}))
 
 latest_version=$(curl -SsL https://bitcoin.org/en/download | grep 'Latest version:' | awk '{print $NF}')
-# curl -SsL https://registry.hub.docker.com/v1/repositories/fullnode/bitcoin/tags | grep ${latest_version} &> /dev/null && exit 0
+curl -SsL https://registry.hub.docker.com/v1/repositories/fullnode/bitcoin/tags | grep ${latest_version} &> /dev/null && exit 0
 
 INFO "docker build --build-arg BUILD_DATE=$(TZ=UTC-8 date -u +'%Y-%m-%d-%H:%M:%S') --build-arg VERSION=${latest_version} -t fullnode/bitcoin:${latest_version} -f ./Dockerfile ."
 docker build --build-arg BUILD_DATE=$(TZ=UTC-8 date +'%Y-%m-%d-%H:%M:%S') --build-arg VERSION=${latest_version} -t fullnode/bitcoin:${latest_version} -f ./Dockerfile . || exit 1
