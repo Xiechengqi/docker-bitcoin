@@ -1,8 +1,8 @@
 name: docker-release
 on: 
-  [ push, delete, create ]
+#   [ push, delete, create ]
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '0 0 * * *'
 jobs:
   docker-release:
     name: Release docker image
